@@ -6,8 +6,19 @@
     <title>ARGON | Sofás</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        
+        /* Estilo para el Feedback Táctil (Efecto de hundimiento) */
+        .tap-feedback {
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tap-feedback:active {
+            transform: scale(0.96); /* Se hunde un poco al tocar */
+        }
     </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900">
@@ -22,227 +33,96 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                Volver al Inicio
+                Inicio
             </a>
         </div>
     </nav>
 
-    <header class="pt-32 pb-10 bg-zinc-100">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold text-zinc-800 italic mb-4">Sofás</h1>
-            <p class="text-zinc-500 max-w-2xl mx-auto italic">Colección exclusiva de confort y diseño artesanal.</p>
+    <header class="pt-32 pb-16 bg-zinc-100 text-center overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 data-aos="fade-down" class="text-5xl md:text-6xl font-bold text-zinc-800 italic mb-4">SOFÁS</h1>
+            <div data-aos="fade-up" data-aos-delay="200" class="h-1.5 w-24 bg-amber-700 mx-auto mb-6 rounded-full"></div>
+            <p data-aos="fade-up" data-aos-delay="400" class="text-zinc-500 max-w-2xl mx-auto italic text-lg">Colección exclusiva de confort y diseño artesanal. Fabricados a tu medida en Cuba.</p>
         </div>
     </header>
 
     <section class="py-20 max-w-7xl mx-auto px-6">
-    <div id="sofas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Chesterfield%20Clásico&precio=145,000&img=https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Chesterfield Clásico</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Nórdico%20Minimalista&precio=92,000&img=https://images.unsplash.com/photo-1550254478-ead40cd82477?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1550254478-ead40cd82477?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Nórdico Minimalista</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Tres%20Plazas%20Gris&precio=115,000&img=https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Tres Plazas Gris</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Chaise%20Longue%20Moderno&precio=158,000&img=https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Chaise Longue Moderno</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Terciopelo%20Azul&precio=128,000&img=https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Terciopelo Azul</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Vintage%20de%20Cuero&precio=165,000&img=https://images.unsplash.com/photo-1512331283953-19967202267a?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1512331283953-19967202267a?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Vintage de Cuero</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Modular%20Crema&precio=142,000&img=https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Modular Crema</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Líneas%20Rectas&precio=108,000&img=https://images.unsplash.com/photo-1551133990-790176317424?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1551133990-790176317424?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Líneas Rectas</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Contemporáneo&precio=119,000&img=https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Contemporáneo</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Madera%20y%20Lino&precio=112,000&img=https://images.unsplash.com/photo-1616627686001-f25492461022?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1616627686001-f25492461022?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Madera y Lino</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Esquinero%20Familiar&precio=185,000&img=https://images.unsplash.com/photo-1605884827083-048739962a9a?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1605884827083-048739962a9a?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Esquinero Familiar</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sillón%20Relax%20Argon&precio=78,000&img=https://images.unsplash.com/photo-1511967728237-4d64f0283921?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1511967728237-4d64f0283921?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sillón Relax Argon</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Estilo%20Parisino&precio=135,000&img=https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Estilo Parisino</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Espacios%20Pequeños&precio=84,000&img=https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Espacios Pequeños</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Diván%20de%20Lujo&precio=148,000&img=https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Diván de Lujo</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Cuero%20Envejecido&precio=175,000&img=https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Cuero Envejecido</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Capitoné%20Moderno&precio=132,000&img=https://images.unsplash.com/photo-1629123014802-53691522858b?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1629123014802-53691522858b?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Capitoné Moderno</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Estilo%20Japandi&precio=118,000&img=https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Estilo Japandi</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Escandinavo&precio=125,000&img=https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Escandinavo</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Sofá%20Imperial%20Argon&precio=190,000&img=https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80|w=800" class="block relative overflow-hidden h-72">
-                <img src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Sofá Imperial Argon</h3></div>
-        </div>
-
-    </div>
-</section>
+        <div id="sofas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+    </section>
 
     <footer class="bg-zinc-900 text-white py-12 text-center">
         <p class="text-zinc-500 text-sm">&copy; 2026 ARGON Carpintería - La Habana, Cuba.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+
+        // Función para la vibración háptica (Feedback Táctil)
+        function darVibracion() {
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10); // Vibración sutil de 10 milisegundos
+            }
+        }
+
+        const sofas = [
+            { nombre: "Chesterfield Clásico", img: "1555041469-a586c61ea9bc" },
+            { nombre: "Sofá Nórdico Minimalista", img: "1550254478-ead40cd82477" },
+            { nombre: "Sofá Tres Plazas Gris", img: "1493663284031-b7e3aefcae8e" },
+            { nombre: "Chaise Longue Moderno", img: "1540518614846-7eded433c457" },
+            { nombre: "Sofá Terciopelo Azul", img: "1567016432779-094069958ea5" },
+            { nombre: "Sofá Vintage de Cuero", img: "1512331283953-19967202267a" },
+            { nombre: "Sofá Modular Crema", img: "1549187774-b4e9b0445b41" },
+            { nombre: "Sofá Líneas Rectas", img: "1551133990-790176317424" },
+            { nombre: "Sofá Contemporáneo", img: "1634712282287-14ed57b9cc89" },
+            { nombre: "Sofá Madera y Lino", img: "1616627686001-f25492461022" },
+            { nombre: "Sofá Esquinero Familiar", img: "1605884827083-048739962a9a" },
+            { nombre: "Sillón Relax Argon", img: "1511967728237-4d64f0283921" },
+            { nombre: "Sofá Estilo Parisino", img: "1484101403633-562f891dc89a" },
+            { nombre: "Sofá Espacios Pequeños", img: "1505691723518-36a5ac3be353" },
+            { nombre: "Diván de Lujo", img: "1615529182904-14819c35db37" },
+            { nombre: "Sofá Cuero Envejecido", img: "1540574163026-643ea20ade25" },
+            { nombre: "Sofá Capitoné Moderno", img: "1629123014802-53691522858b" },
+            { nombre: "Sofá Estilo Japandi", img: "1583847268964-b28dc8f51f92" },
+            { nombre: "Sofá Escandinavo", img: "1524758631624-e2822e304c36" },
+            { nombre: "Sofá Imperial Argon", img: "1519947486511-46149fa0a254" }
+        ];
+
+        const container = document.getElementById('sofas-grid');
+        let htmlContent = "";
+
+        sofas.forEach((s, index) => {
+            const imgFullUrl = `https://images.unsplash.com/photo-${s.img}?q=80&w=800`;
+            const imgParam = imgFullUrl.replace(/&/g, '|');
+            const delay = (index % 3) * 150;
+
+            // Se añadió la clase 'tap-feedback' y el evento 'onmousedown="darVibracion()"'
+            htmlContent += `
+            <div data-aos="fade-up" data-aos-delay="${delay}" 
+                 onmousedown="darVibracion()" 
+                 class="tap-feedback bg-white rounded-[2.5rem] shadow-lg overflow-hidden border border-zinc-100 group hover:shadow-2xl transition-all duration-500 cursor-pointer">
+                <a href="detalles-muebles.html?nombre=${encodeURIComponent(s.nombre)}&img=${imgParam}" class="block relative overflow-hidden h-80">
+                    <img src="https://images.unsplash.com/photo-${s.img}?q=80&w=600" 
+                         alt="${s.nombre}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-1000">
+                    <div class="absolute inset-0 bg-zinc-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center backdrop-blur-[2px] p-6 text-center">
+                        <span class="bg-white text-zinc-900 px-8 py-3 rounded-full font-bold shadow-xl italic transform translate-y-4 group-hover:translate-y-0 transition-all">Ver y Cotizar</span>
+                        <p class="text-white text-sm mt-3 opacity-90">Personaliza telas y medidas</p>
+                    </div>
+                </a>
+                <div class="p-8 text-center">
+                    <h3 class="text-2xl font-bold text-zinc-800 italic uppercase tracking-tight leading-tight">${s.nombre}</h3>
+                    <div class="w-12 h-0.5 bg-amber-600/30 mx-auto mt-4 group-hover:w-24 transition-all duration-500"></div>
+                </div>
+            </div>`;
+        });
+
+        container.innerHTML = htmlContent;
+    </script>
 </body>
 </html>

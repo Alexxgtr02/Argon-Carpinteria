@@ -3,82 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARGON | Confirmar Pedido</title>
+    <title>ARGON | Confirmar Orden</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="bg-zinc-100 text-zinc-900 font-['Outfit'] min-h-screen flex flex-col items-center justify-center p-4">
-
-    <div class="max-w-2xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-zinc-200">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
         
-        <div class="bg-zinc-900 text-white p-8 text-center relative">
-            <h2 class="text-amber-500 uppercase tracking-[0.3em] text-xs font-bold mb-2">Orden de Fabricación</h2>
-            <h1 class="text-3xl font-bold italic">ARGON CARPINTERÍA</h1>
-            <div class="absolute top-4 right-8 opacity-20 text-4xl font-serif">2026</div>
+        /* Animación de éxito para el feedback visual */
+        .btn-success {
+            background-color: #059669 !important; /* Verde esmeralda */
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-zinc-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden">
+        <div class="bg-zinc-900 text-white p-8 text-center">
+            <h1 class="text-2xl font-bold italic tracking-tighter">CONFIRMAR PEDIDO ARGON</h1>
         </div>
 
-        <div class="h-64 w-full overflow-hidden bg-zinc-200">
-            <img id="conf-img" src="" alt="Mueble" class="w-full h-full object-cover">
-        </div>
-
-        <div class="p-8 md:p-12 space-y-8">
+        <div class="p-8 space-y-6">
+            <img id="c-img" class="w-full h-48 object-cover rounded-2xl shadow-lg bg-zinc-200" alt="Vista previa mueble">
+            
             <div class="text-center">
-                <h3 id="conf-nombre" class="text-3xl font-bold text-zinc-800 italic uppercase">Nombre del Mueble</h3>
-                <div class="h-1 w-20 bg-amber-600 mx-auto mt-4 rounded-full"></div>
+                <h2 id="c-nombre" class="text-2xl font-bold text-zinc-800 italic uppercase"></h2>
+                <p class="text-4xl font-black text-amber-900 mt-2">
+                    <span id="c-total"></span> <small class="text-sm">CUP</small>
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-zinc-50 p-6 rounded-3xl border border-zinc-100">
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-bold text-zinc-400">Dimensión / Tipo</p>
-                    <p id="conf-p1" class="font-semibold text-zinc-700">---</p>
-                </div>
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-bold text-zinc-400">Material Base</p>
-                    <p id="conf-p2" class="font-semibold text-zinc-700">---</p>
-                </div>
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-bold text-zinc-400">Acabado / Tela</p>
-                    <p id="conf-p3" class="font-semibold text-zinc-700">---</p>
-                </div>
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-bold text-zinc-400">Detalles Extra</p>
-                    <p id="conf-p4" class="font-semibold text-zinc-700">---</p>
-                </div>
+            <div class="bg-zinc-50 rounded-2xl p-6 border border-zinc-100 grid grid-cols-2 gap-4 text-sm">
+                <div><p class="text-zinc-400 font-bold uppercase text-[10px]">Opción 1</p><p id="c-p1" class="font-semibold text-zinc-700"></p></div>
+                <div><p class="text-zinc-400 font-bold uppercase text-[10px]">Opción 2</p><p id="c-p2" class="font-semibold text-zinc-700"></p></div>
+                <div><p class="text-zinc-400 font-bold uppercase text-[10px]">Opción 3</p><p id="c-p3" class="font-semibold text-zinc-700"></p></div>
+                <div><p class="text-zinc-400 font-bold uppercase text-[10px]">Opción 4</p><p id="c-p4" class="font-semibold text-zinc-700"></p></div>
             </div>
 
-            <div class="flex justify-between items-center border-t border-dashed border-zinc-300 pt-6">
-                <span class="text-xl font-medium text-zinc-500 italic">Total a pagar:</span>
-                <span class="text-4xl font-bold text-amber-900"><span id="conf-total">0</span> <small class="text-sm">CUP</small></span>
-            </div>
-
-            <button onclick="enviarWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-2xl font-bold text-xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-4">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.229 3.481 8.406c0 6.555-5.332 11.887-11.888 11.887-2.01 0-3.987-.51-5.741-1.474l-6.143 1.613zm5.889-3.235.33.196c1.547.917 3.325 1.403 5.152 1.403 5.488 0 9.954-4.466 9.954-9.953 0-2.659-1.035-5.159-2.915-7.038s-4.379-2.915-7.038-2.915c-5.488 0-9.954 4.465-9.954 9.953 0 1.933.559 3.818 1.617 5.434l.215.33-.956 3.489 3.569-.937zm9.648-5.712c-.229-.115-1.353-.667-1.562-.743-.209-.076-.361-.115-.513.115-.152.23-.589.743-.722.897-.133.153-.266.172-.495.058-.229-.115-.965-.356-1.838-1.134-.68-.606-1.138-1.355-1.271-1.585-.133-.23-.015-.353.099-.467.104-.103.229-.266.344-.401.114-.134.152-.23.228-.383.076-.153.038-.287-.019-.402-.057-.115-.513-1.237-.703-1.693-.186-.448-.37-.387-.513-.394l-.437-.007c-.152 0-.399.057-.608.287-.209.23-.798.783-.798 1.912 0 1.128.821 2.221.935 2.374.114.153 1.617 2.47 3.916 3.46.547.235.974.375 1.306.481.548.174 1.048.15 1.442.091.44-.067 1.353-.553 1.543-1.087.19-.533.19-1.006.133-1.101-.057-.095-.209-.152-.438-.268z"/></svg>
-                Confirmar y Enviar Pedido
+            <button id="btn-add" onclick="añadirAlCarrito()" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-5 rounded-2xl font-bold text-xl shadow-lg transition-all duration-300 active:scale-95 flex items-center justify-center gap-3">
+                <span id="btn-icon">🛒</span> <span id="btn-text">Añadir al Carrito</span>
             </button>
-            <button onclick="window.history.back()" class="w-full text-zinc-400 text-sm hover:underline">Corregir configuración</button>
+            
+            <a href="index.html" class="block text-center text-zinc-400 text-sm font-medium hover:text-zinc-600">Cancelar y volver</a>
         </div>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        
-        // Cargar datos en la página
-        document.getElementById('conf-nombre').innerText = params.get('nombre');
-        document.getElementById('conf-img').src = params.get('img').replace(/\|/g, '&');
-        document.getElementById('conf-p1').innerText = params.get('p1');
-        document.getElementById('conf-p2').innerText = params.get('p2');
-        document.getElementById('conf-p3').innerText = params.get('p3');
-        document.getElementById('conf-p4').innerText = params.get('p4');
-        document.getElementById('conf-total').innerText = params.get('total');
 
-        function enviarWhatsApp() {
-            const msj = `*NUEVO PEDIDO ARGON*\n--------------------------\n` +
-                        `*Modelo:* ${params.get('nombre')}\n` +
-                        `*Detalles:* ${params.get('p1')}, ${params.get('p2')}, ${params.get('p3')}, ${params.get('p4')}\n` +
-                        `*Precio Est:* ${params.get('total')} CUP\n` +
-                        `--------------------------\nConfirmar disponibilidad por favor.`;
+        document.getElementById('c-nombre').innerText = params.get('nombre') || 'Mueble Argon';
+        document.getElementById('c-total').innerText = params.get('total') || '0';
+        document.getElementById('c-p1').innerText = params.get('p1') || 'No definido';
+        document.getElementById('c-p2').innerText = params.get('p2') || 'No definido';
+        document.getElementById('c-p3').innerText = params.get('p3') || 'No definido';
+        document.getElementById('c-p4').innerText = params.get('p4') || 'No definido';
+        
+        const imgPath = params.get('img') || 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80';
+        document.getElementById('c-img').src = imgPath;
+
+        function añadirAlCarrito() {
+            // --- FEEDBACK TÁCTIL (Vibración) ---
+            if ("vibrate" in navigator) {
+                // Una vibración corta de 50 milisegundos
+                navigator.vibrate(50);
+            }
+
+            // --- FEEDBACK VISUAL ---
+            const btn = document.getElementById('btn-add');
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
             
-            window.location.href = `https://wa.me/5358748550?text=${encodeURIComponent(msj)}`;
+            btn.classList.add('btn-success');
+            btnText.innerText = "¡Añadido!";
+            btnIcon.innerText = "✅";
+
+            const item = {
+                nombre: document.getElementById('c-nombre').innerText,
+                detalles: `Mod: ${document.getElementById('c-p1').innerText} | ${document.getElementById('c-p2').innerText} | ${document.getElementById('c-p3').innerText} | ${document.getElementById('c-p4').innerText}`,
+                precio: document.getElementById('c-total').innerText,
+                categoria: "Personalizado"
+            };
+
+            let carrito = JSON.parse(localStorage.getItem('carritoArgon')) || [];
+            carrito.push(item);
+            localStorage.setItem('carritoArgon', JSON.stringify(carrito));
+
+            // Esperar un momento para que el usuario vea el cambio antes de redirigir
+            setTimeout(() => {
+                window.location.href = 'carrito.html';
+            }, 800);
         }
     </script>
 </body>

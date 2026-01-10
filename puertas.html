@@ -6,8 +6,33 @@
     <title>ARGON | Puertas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+
+        /* Estilos de Feedback Táctil */
+        .btn-press {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        /* Efecto de hundimiento al presionar */
+        .btn-press:active {
+            transform: scale(0.95);
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+        }
+
+        .card-touch {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        /* Efecto de elevación al tocar/hover */
+        .card-touch:hover {
+            transform: translateY(-8px);
+        }
+        /* Efecto de presión en la tarjeta */
+        .card-touch:active {
+            transform: scale(0.98) translateY(-4px);
+        }
     </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900">
@@ -18,231 +43,91 @@
                 <img src="logo.jpeg" alt="ARGON Logo" class="h-12 w-auto object-contain">
                 <span class="text-3xl font-bold tracking-tighter text-amber-900">ARGON</span>
             </a>
-            <a href="index.html" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2 rounded-xl font-bold transition shadow-md flex items-center gap-2">
+            <a href="index.html" class="btn-press bg-amber-700 hover:bg-amber-800 text-white px-5 py-2 rounded-xl font-bold transition shadow-md flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                Volver al Inicio
+                Inicio
             </a>
         </div>
     </nav>
 
-    <header class="pt-32 pb-10 bg-zinc-100">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold text-zinc-800 italic mb-4">Puertas</h1>
-            <p class="text-zinc-500 max-w-2xl mx-auto italic">Seguridad y elegancia tallada en las mejores maderas de Cuba.</p>
+    <header class="pt-32 pb-16 bg-zinc-100 text-center overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 data-aos="fade-down" class="text-5xl md:text-6xl font-bold text-zinc-800 italic mb-4 uppercase">Puertas</h1>
+            <div data-aos="fade-up" data-aos-delay="200" class="h-1.5 w-24 bg-amber-700 mx-auto mb-6 rounded-full"></div>
+            <p data-aos="fade-up" data-aos-delay="400" class="text-zinc-500 max-w-2xl mx-auto italic text-lg">Seguridad y elegancia tallada en las mejores maderas de Cuba. Diseños que duran toda la vida.</p>
         </div>
     </header>
 
     <section class="py-20 max-w-7xl mx-auto px-6">
-    <div id="puertas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Principal%20Tallada&precio=85,000&img=https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Principal Tallada</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Minimalista%20Cedro&precio=42,000&img=https://images.unsplash.com/photo-1515516089376-88db1e267f6a?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1515516089376-88db1e267f6a?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Minimalista Cedro</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Rústica%20de%20Hacienda&precio=68,000&img=https://images.unsplash.com/photo-1534349735244-26958f2f8255?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1534349735244-26958f2f8255?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Rústica de Hacienda</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Entrada%20Moderna&precio=75,000&img=https://images.unsplash.com/photo-1491238473395-d7a8060a0044?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1491238473395-d7a8060a0044?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Entrada Moderna</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Interior%20de%20Roble&precio=38,500&img=https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Interior de Roble</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Doble%20Hoja%20Clásica&precio=92,000&img=https://images.unsplash.com/photo-1481277542470-605fe2fe45de?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1481277542470-605fe2fe45de?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Doble Hoja Clásica</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Granero%20Sliding&precio=45,000&img=https://images.unsplash.com/photo-1528628358249-f47285a86470?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1528628358249-f47285a86470?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Granero (Sliding)</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Vitral%20Artístico&precio=62,000&img=https://images.unsplash.com/photo-1590422749897-47029cb239bc?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1590422749897-47029cb239bc?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Vitral Artístico</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Seguridad%20Reforzada&precio=95,000&img=https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Seguridad Reforzada</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Pivot%20Moderna&precio=88,000&img=https://images.unsplash.com/photo-1544465437-0105318357a7?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1544465437-0105318357a7?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Pivot Moderna</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Blanca%20Colonial&precio=36,000&img=https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Blanca Colonial</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Baño%20Espejo&precio=32,500&img=https://images.unsplash.com/photo-1505332512411-8f4b069d7260?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1505332512411-8f4b069d7260?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Baño Espejo</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Tallada%20Flores&precio=58,000&img=https://images.unsplash.com/photo-1549410190-67a47f489370?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1549410190-67a47f489370?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Tallada Flores</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Madera%20y%20Forja&precio=72,000&img=https://images.unsplash.com/photo-1582234373405-f4893701255e?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1582234373405-f4893701255e?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Madera y Forja</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Patio%20Acristalada&precio=49,000&img=https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Patio Acristalada</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Roble%20Oscuro&precio=41,000&img=https://images.unsplash.com/photo-1600566752355-397921139bf1?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1600566752355-397921139bf1?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Roble Oscuro</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Oficina%20Elegante&precio=44,000&img=https://images.unsplash.com/photo-1497366216548-37526070297c?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Oficina Elegante</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Cocina%20Despensa&precio=35,000&img=https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Cocina Despensa</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Estilo%20Industrial&precio=52,000&img=https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Estilo Industrial</h3></div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-zinc-100 group">
-            <a href="detalles-muebles.html?nombre=Puerta%20Imperial%20Argon&precio=98,000&img=https://images.unsplash.com/photo-1541824266465-7fd3560a7ad7?q=80|w=800" class="block relative overflow-hidden h-96">
-                <img src="https://images.unsplash.com/photo-1541824266465-7fd3560a7ad7?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="bg-white/90 text-zinc-900 px-6 py-2 rounded-full font-bold text-sm shadow-xl italic">Ver Detalles</span>
-                </div>
-            </a>
-            <div class="p-8 text-center"><h3 class="text-2xl font-bold text-zinc-800 italic">Puerta Imperial Argon</h3></div>
-        </div>
-
-    </div>
-</section>
+        <div id="puertas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+    </section>
 
     <footer class="bg-zinc-900 text-white py-12 text-center">
         <p class="text-zinc-500 text-sm">&copy; 2026 ARGON Carpintería - La Habana, Cuba.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+
+        const puertas = [
+            { nombre: "Puerta Principal Tallada", img: "1506377295352-e3154d43ea9e" },
+            { nombre: "Puerta Minimalista Cedro", img: "1515516089376-88db1e267f6a" },
+            { nombre: "Puerta Rústica de Hacienda", img: "1534349735244-26958f2f8255" },
+            { nombre: "Puerta Entrada Moderna", img: "1491238473395-d7a8060a0044" },
+            { nombre: "Puerta Interior de Roble", img: "1516455590571-18256e5bb9ff" },
+            { nombre: "Puerta Doble Hoja Clásica", img: "1481277542470-605fe2fe45de" },
+            { nombre: "Puerta Granero Sliding", img: "1528628358249-f47285a86470" },
+            { nombre: "Puerta Vitral Artístico", img: "1590422749897-47029cb239bc" },
+            { nombre: "Puerta Seguridad Reforzada", img: "1531306728370-e2ebd9d7bb99" },
+            { nombre: "Puerta Pivot Moderna", img: "1544465437-0105318357a7" },
+            { nombre: "Puerta Blanca Colonial", img: "1622396481328-9b1b78cdd9fd" },
+            { nombre: "Puerta Baño Espejo", img: "1505332512411-8f4b069d7260" },
+            { nombre: "Puerta Tallada Flores", img: "1549410190-67a47f489370" },
+            { nombre: "Puerta Madera y Forja", img: "1582234373405-f4893701255e" },
+            { nombre: "Puerta Patio Acristalada", img: "1512917774080-9991f1c4c750" },
+            { nombre: "Puerta Roble Oscuro", img: "1600566752355-397921139bf1" },
+            { nombre: "Puerta Oficina Elegante", img: "1497366216548-37526070297c" },
+            { nombre: "Puerta Cocina Despensa", img: "1510074377623-8cf13fb86c08" },
+            { nombre: "Puerta Estilo Industrial", img: "1515263487990-61b07816b324" },
+            { nombre: "Puerta Imperial Argon", img: "1541824266465-7fd3560a7ad7" }
+        ];
+
+        const grid = document.getElementById('puertas-grid');
+        let html = "";
+
+        puertas.forEach((p, index) => {
+            const imgUrl = `https://images.unsplash.com/photo-${p.img}?q=80&w=800`;
+            const imgParam = imgUrl.replace(/&/g, '|');
+            const delay = (index % 3) * 150; 
+
+            html += `
+            <div data-aos="fade-up" data-aos-delay="${delay}" class="card-touch bg-white rounded-[2.5rem] shadow-lg overflow-hidden border border-zinc-100 group hover:shadow-2xl cursor-pointer">
+                <a href="detalles-muebles.html?nombre=${encodeURIComponent(p.nombre)}&img=${imgParam}" class="block relative overflow-hidden h-[30rem]">
+                    <img src="https://images.unsplash.com/photo-${p.img}?q=80&w=600" 
+                         alt="${p.nombre}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-1000">
+                    <div class="absolute inset-0 bg-zinc-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center backdrop-blur-[2px] p-6 text-center">
+                        <span class="btn-press bg-white text-zinc-900 px-8 py-3 rounded-full font-bold shadow-xl italic mb-2 transform translate-y-4 group-hover:translate-y-0 transition-all">Configurar Puerta</span>
+                        <p class="text-white text-sm opacity-90 mt-2">Personaliza madera y acabado</p>
+                    </div>
+                </a>
+                <div class="p-8 text-center">
+                    <h3 class="text-2xl font-bold text-zinc-800 italic uppercase leading-tight">${p.nombre}</h3>
+                    <div class="w-10 h-0.5 bg-amber-200 mx-auto mt-4 group-hover:w-20 transition-all"></div>
+                </div>
+            </div>`;
+        });
+
+        grid.innerHTML = html;
+    </script>
 </body>
 </html>
