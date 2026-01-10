@@ -11,12 +11,9 @@
         .label-estilo { display: block; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; color: #71717a; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
         .input-estilo { width: 100%; background-color: #f4f4f5; border: 2px solid #e4e4e7; padding: 1rem; border-radius: 1.25rem; outline: none; font-weight: 600; color: #18181b; appearance: none; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        /* Feedback visual al enfocar */
         .input-estilo:focus { border-color: #b45309; background-color: white; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(180, 83, 9, 0.1); }
-        /* Feedback táctil visual al clickear */
         .input-estilo:active { transform: scale(0.97); }
 
-        /* Animación para el cambio de precio */
         @keyframes price-pop {
             0% { transform: scale(1); color: white; }
             50% { transform: scale(1.05); color: #f59e0b; }
@@ -49,13 +46,22 @@
                 <h1 id="producto-nombre" class="text-4xl md:text-6xl font-bold text-zinc-800 italic uppercase leading-tight tracking-tighter text-balance">Cargando...</h1>
             </div>
 
-            <div id="price-container" class="bg-zinc-900 rounded-[2rem] p-10 mb-12 text-center shadow-2xl relative overflow-hidden transition-all duration-300">
+            <div id="price-container" class="bg-zinc-900 rounded-[2rem] p-10 mb-6 text-center shadow-2xl relative overflow-hidden transition-all duration-300">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-amber-600/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
                 <span class="text-zinc-400 uppercase text-xs font-bold tracking-[0.2em]">Presupuesto Estimado</span>
                 <div class="text-6xl md:text-7xl font-bold text-white mt-4 flex items-center justify-center gap-3">
                     <span id="precio-dinamico" class="tabular-nums">0</span>
                     <span class="text-2xl text-amber-500 font-bold self-end mb-2">CUP</span>
                 </div>
+            </div>
+
+            <div class="mb-12 flex items-center justify-center gap-3 bg-amber-50 border border-amber-100 p-4 rounded-2xl text-amber-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-sm md:text-base font-semibold italic">
+                    Todos nuestros muebles son por encargo, llegará en un plazo de 20 días.
+                </p>
             </div>
 
             <div id="configurador-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"></div>
@@ -72,7 +78,6 @@
     </main>
 
     <script>
-        // Función de Feedback Háptico (Vibración)
         function vibrar(ms) {
             if (navigator.vibrate) {
                 navigator.vibrate(ms);
@@ -90,7 +95,6 @@
         const esPuerta = /puerta/i.test(nombre);
         const grid = document.getElementById('configurador-grid');
 
-        // Función para renderizar opciones con evento de vibración
         function setGrid(content) {
             grid.innerHTML = content;
         }
@@ -133,15 +137,14 @@
                           (parseInt(v3.options[v3.selectedIndex].dataset.p) || 0) +
                           (parseInt(v4.options[v4.selectedIndex].dataset.p) || 0);
 
-            // Efecto visual de feedback en el precio
             precioLabel.classList.remove('price-change');
-            void precioLabel.offsetWidth; // Trigger reflow para reiniciar animación
+            void precioLabel.offsetWidth; 
             precioLabel.classList.add('price-change');
             
             precioLabel.innerText = total.toLocaleString('es-ES');
 
             document.getElementById('btn-continuar').onclick = () => {
-                vibrar([30, 50, 30]); // Vibración triple estilo "éxito"
+                vibrar([30, 50, 30]);
                 const query = new URLSearchParams({
                     nombre: nombre, 
                     img: imgRaw, 
@@ -151,7 +154,6 @@
                     p3: v3.value, 
                     p4: v4.value
                 });
-                // Pequeño delay para que el usuario sienta el click antes de cambiar de página
                 setTimeout(() => {
                     window.location.href = 'confirmacion.html?' + query.toString();
                 }, 150);

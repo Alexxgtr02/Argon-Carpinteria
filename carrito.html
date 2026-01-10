@@ -15,13 +15,15 @@
             <a href="index.html" class="text-amber-700 font-semibold hover:underline">← Volver a la tienda</a>
         </div>
         
-        <div id="lista-carrito" class="space-y-4">
-            </div>
+        <div id="lista-carrito" class="space-y-4"></div>
 
         <div class="mt-10 p-8 bg-white rounded-[2rem] shadow-2xl border border-zinc-100">
-            <div class="flex justify-between text-2xl font-bold mb-6">
-                <span class="text-zinc-500">Total General:</span>
-                <span id="total-general" class="text-amber-900">0 CUP</span>
+            <div class="flex flex-col mb-6">
+                <div class="flex justify-between text-2xl font-bold">
+                    <span class="text-zinc-500">Total:</span>
+                    <span id="total-general" class="text-amber-900">0 CUP</span>
+                </div>
+                <span id="total-letras" class="text-right text-xs text-zinc-400 uppercase font-medium mt-1"></span>
             </div>
             
             <button onclick="enviarPedidoFinal()" class="w-full bg-green-600 text-white py-5 rounded-2xl font-bold text-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-200 active:scale-95 mb-4">
@@ -35,40 +37,71 @@
     </div>
 
     <script>
+        // Función para convertir números a texto (letras)
+        function numeroALetras(num) {
+            if (num === 0) return "cero";
+            const unidades = ["", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"];
+            const decenas = ["diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"];
+            const decenas2 = ["veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"];
+            const centenas = ["", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"];
+
+            function traducir(n) {
+                if (n < 10) return unidades[n];
+                if (n < 20) return decenas[n - 10];
+                if (n < 100) {
+                    let u = n % 10;
+                    return decenas2[Math.floor(n / 10) - 2] + (u > 0 ? " y " + unidades[u] : "");
+                }
+                if (n < 1000) {
+                    if (n === 100) return "cien";
+                    return centenas[Math.floor(n / 100)] + " " + traducir(n % 100);
+                }
+                if (n < 1000000) {
+                    let mil = Math.floor(n / 1000);
+                    let resto = n % 1000;
+                    let textoMil = (mil === 1) ? "mil" : traducir(mil) + " mil";
+                    return textoMil + " " + traducir(resto);
+                }
+                return n.toLocaleString();
+            }
+            return traducir(num).trim();
+        }
+
         function cargarCarrito() {
             const carrito = JSON.parse(localStorage.getItem('carritoArgon')) || [];
             const contenedor = document.getElementById('lista-carrito');
             let total = 0;
 
             if (carrito.length === 0) {
-                contenedor.innerHTML = `
-                    <div class="text-center py-20 bg-white rounded-3xl border-2 border-dashed border-zinc-200">
-                        <p class="text-zinc-400 text-lg">Tu carrito está vacío.</p>
-                        <a href="index.html" class="text-amber-700 font-bold mt-4 inline-block">Ir a ver muebles</a>
-                    </div>`;
+                contenedor.innerHTML = `<div class="text-center py-20 bg-white rounded-3xl border-2 border-dashed border-zinc-200"><p class="text-zinc-400 text-lg">Tu carrito está vacío.</p></div>`;
                 document.getElementById('total-general').innerText = "0 CUP";
+                document.getElementById('total-letras').innerText = "";
                 return;
             }
 
             contenedor.innerHTML = carrito.map((item, index) => {
-                const precioLimpio = parseInt(item.precio.replace(/,/g, ''));
-                total += precioLimpio;
+                // EXPLICACIÓN: Quitamos puntos y comas para que 140.000 sea 140000
+                const precioNum = parseInt(item.precio.replace(/[.,]/g, ''));
+                total += precioNum;
                 
                 return `
-                    <div class="bg-white p-6 rounded-2xl shadow-sm flex justify-between items-center border border-zinc-100 animate-fade-in">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex justify-between items-center border border-zinc-100">
                         <div>
                             <h3 class="font-bold text-lg text-zinc-800">${item.nombre}</h3>
                             <p class="text-sm text-amber-700 font-medium">${item.categoria || 'Mueble'}</p>
                         </div>
                         <div class="text-right">
                             <span class="block font-bold text-xl text-zinc-900">${item.precio} <small class="text-[10px]">CUP</small></span>
+                            <span class="block text-[10px] text-zinc-400 uppercase italic">${numeroALetras(precioNum)} cup</span>
                             <button onclick="eliminarItem(${index})" class="text-red-400 text-xs hover:text-red-600 mt-1">Eliminar</button>
                         </div>
                     </div>
                 `;
             }).join('');
 
-            document.getElementById('total-general').innerText = total.toLocaleString() + " CUP";
+            // Usamos .toLocaleString('es-ES') para que el total se vea con puntos (263.000)
+            document.getElementById('total-general').innerText = total.toLocaleString('es-ES') + " CUP";
+            document.getElementById('total-letras').innerText = numeroALetras(total) + " cup";
         }
 
         function eliminarItem(index) {
@@ -82,13 +115,19 @@
             const carrito = JSON.parse(localStorage.getItem('carritoArgon')) || [];
             if (carrito.length === 0) return;
 
+            let totalAcumulado = 0;
             let texto = "*NUEVO PEDIDO - ARGON CARPINTERÍA*\n";
             texto += "------------------------------\n\n";
+            
             carrito.forEach((item, i) => {
-                texto += `${i+1}. *${item.nombre}*\n   Precio: ${item.precio} CUP\n\n`;
+                const p = parseInt(item.precio.replace(/[.,]/g, ''));
+                totalAcumulado += p;
+                texto += `${i+1}. *${item.nombre}*\n   Precio: ${item.precio} CUP (${numeroALetras(p)})\n\n`;
             });
+
             texto += "------------------------------\n";
-            texto += `*TOTAL A PAGAR:* ${document.getElementById('total-general').innerText}\n\n`;
+            texto += `*TOTAL A PAGAR:* ${totalAcumulado.toLocaleString('es-ES')} CUP\n`;
+            texto += `(_${numeroALetras(totalAcumulado)} pesos_)\n\n`;
             texto += "_Por favor, confírmenme disponibilidad y tiempo de entrega._";
 
             const url = `https://wa.me/5358748550?text=${encodeURIComponent(texto)}`;
