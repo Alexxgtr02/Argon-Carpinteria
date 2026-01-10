@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARGON | Cotizador Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .label-estilo { display: block; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; color: #a1a1aa; margin-bottom: 0.5rem; }
+        .input-estilo { width: 100%; background-color: #f4f4f5; border: 1px solid #e4e4e7; padding: 1rem; border-radius: 1rem; outline: none; font-weight: 600; color: #18181b; }
+        .input-estilo:focus { border-color: #b45309; box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.2); }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 font-['Outfit']">
+
+    <nav class="fixed top-0 w-full z-50 p-6 pointer-events-none">
+        <button onclick="window.history.back()" class="pointer-events-auto bg-white/90 backdrop-blur-md text-amber-900 font-bold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-amber-50 transition">
+            ← Volver
+        </button>
+    </nav>
+
+    <div class="w-full h-[45vh] md:h-[60vh] relative overflow-hidden bg-zinc-200">
+        <img id="producto-img" src="" alt="Cargando..." class="w-full h-full object-cover">
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-50 to-transparent"></div>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-6 pb-20 -mt-10 relative z-10">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-zinc-100">
+            <div class="text-center space-y-4">
+                <span id="categoria-tag" class="text-amber-700 font-bold uppercase tracking-widest text-sm italic">Cargando...</span>
+                <h1 id="producto-nombre" class="text-4xl md:text-5xl font-bold text-zinc-800 italic uppercase">Cargando...</h1>
+            </div>
+
+            <hr class="my-8 border-zinc-100">
+
+            <div class="bg-zinc-900 rounded-2xl p-8 mb-10 text-center shadow-inner">
+                <span class="text-zinc-400 uppercase text-xs font-bold tracking-widest">Presupuesto Estimado</span>
+                <div class="text-6xl font-bold text-white mt-2"><span id="precio-dinamico">0</span> <small class="text-xl text-amber-500">CUP</small></div>
+            </div>
+
+            <div id="configurador-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                </div>
+
+            <button id="btn-continuar" class="block w-full bg-amber-700 hover:bg-amber-800 text-white text-center py-6 rounded-2xl font-bold text-2xl shadow-xl transition-all hover:scale-[1.02] active:scale-95">
+                Revisar mi Pedido
+            </button>
+        </div>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const nombre = params.get('nombre') || "Mueble Argon";
+        const img = params.get('img') || "logo.jpeg";
+        document.getElementById('producto-nombre').innerText = nombre;
+        document.getElementById('producto-img').src = img.replace(/\|/g, '&');
+
+        const esSofa = /sofa|sofá|sillón|sillon|chaise|chesterfield/i.test(nombre);
+        const esPuerta = /puerta/i.test(nombre);
+        const grid = document.getElementById('configurador-grid');
+
+        if (esSofa) {
+            document.getElementById('categoria-tag').innerText = "Configurador de Sofá";
+            grid.innerHTML = `
+                <div><label class="label-estilo">Medidas</label><select id="opt1" onchange="calcular()" class="input-estilo"><option value="2 Plazas" data-p="45000">2 Plazas</option><option value="3 Plazas" data-p="65000">3 Plazas</option><option value="Esquinero" data-p="98000">Esquinero</option></select></div>
+                <div><label class="label-estilo">Madera</label><select id="opt2" onchange="calcular()" class="input-estilo"><option value="Pino" data-p="0">Pino Tratado</option><option value="Cedro" data-p="15000">Cedro Real</option><option value="Roble" data-p="25000">Roble Macizo</option></select></div>
+                <div><label class="label-estilo">Tejido</label><select id="opt3" onchange="calcular()" class="input-estilo"><option value="Microfibra" data-p="0">Microfibra</option><option value="Terciopelo" data-p="12000">Terciopelo</option><option value="Lino" data-p="8000">Lino Natural</option></select></div>
+                <div><label class="label-estilo">Color</label><select id="opt4" class="input-estilo"><option value="Gris Carbón">Gris Carbón</option><option value="Beige Arena">Beige Arena</option><option value="Azul Petróleo">Azul Petróleo</option></select></div>
+            `;
+        } else if (esPuerta) {
+            document.getElementById('categoria-tag').innerText = "Configurador de Puerta";
+            grid.innerHTML = `
+                <div><label class="label-estilo">Madera</label><select id="opt1" onchange="calcular()" class="input-estilo"><option value="Cedro" data-p="32000">Cedro Real</option><option value="Roble" data-p="45000">Roble Blanco</option><option value="Caoba" data-p="55000">Caoba</option></select></div>
+                <div><label class="label-estilo">Acabado</label><select id="opt2" onchange="calcular()" class="input-estilo"><option value="Natural" data-p="0">Barniz Natural</option><option value="Oscuro" data-p="5000">Barniz Oscuro</option></select></div>
+                <div><label class="label-estilo">Seguridad</label><select id="opt3" onchange="calcular()" class="input-estilo"><option value="Estándar" data-p="0">Cerradura Simple</option><option value="Reforzada" data-p="8500">Kit Seguridad</option></select></div>
+                <div><label class="label-estilo">Marcos</label><select id="opt4" onchange="calcular()" class="input-estilo"><option value="Simple" data-p="0">Marco Estándar</option><option value="Cajón" data-p="6000">Marco de Cajón</option></select></div>
+            `;
+        } else {
+            document.getElementById('categoria-tag').innerText = "Personalización Multimueble";
+            grid.innerHTML = `
+                <div><label class="label-estilo">Tamaño</label><select id="opt1" onchange="calcular()" class="input-estilo"><option value="Pequeño" data-p="35000">Pequeño</option><option value="Mediano" data-p="55000">Mediano</option><option value="Grande" data-p="85000">Grande</option></select></div>
+                <div><label class="label-estilo">Material</label><select id="opt2" onchange="calcular()" class="input-estilo"><option value="MDF" data-p="0">MDF Laminado</option><option value="Madera" data-p="30000">Madera Maciza</option></select></div>
+                <div><label class="label-estilo">Luces LED</label><select id="opt3" onchange="calcular()" class="input-estilo"><option value="Sin LED" data-p="0">Sin LED</option><option value="Con LED" data-p="7500">Con Luces LED</option></select></div>
+                <div><label class="label-estilo">Puertas</label><select id="opt4" onchange="calcular()" class="input-estilo"><option value="Madera" data-p="0">Puertas Madera</option><option value="Cristal" data-p="9000">Puertas Cristal</option></select></div>
+            `;
+        }
+
+        function calcular() {
+            const v1 = document.getElementById('opt1');
+            const v2 = document.getElementById('opt2');
+            const v3 = document.getElementById('opt3');
+            const v4 = document.getElementById('opt4');
+
+            const total = (parseInt(v1.options[v1.selectedIndex].getAttribute('data-p')) || 0) +
+                          (parseInt(v2.options[v2.selectedIndex].getAttribute('data-p')) || 0) +
+                          (parseInt(v3.options[v3.selectedIndex].getAttribute('data-p')) || 0) +
+                          (parseInt(v4.options[v4.selectedIndex].getAttribute('data-p')) || 0);
+
+            document.getElementById('precio-dinamico').innerText = total.toLocaleString();
+
+            document.getElementById('btn-continuar').onclick = () => {
+                const query = new URLSearchParams({
+                    nombre: nombre, img: img, total: total.toLocaleString(),
+                    p1: v1.value, p2: v2.value, p3: v3.value, p4: v4.value
+                });
+                window.location.href = 'confirmacion.html?' + query.toString();
+            };
+        }
+        calcular();
+    </script>
+</body>
+</html>
